@@ -23,14 +23,14 @@ public class TextManager {
 
         String[] words = text.split("(?U)\\W+");
 
-        Arrays.stream(words)
-                .distinct()
-                .forEach(word -> shuffledWords.put(word, stringUtils.shuffleLetters(word)));
+        for (String s : words) {
+            shuffledWords.put(s, stringUtils.shuffleLetters(s));
+        }
 
         for (Map.Entry<String, String> entry : shuffledWords.entrySet()) {
             String word = entry.getKey();
             String shuffledWord = entry.getValue();
-            text = text.replaceAll(word, shuffledWord);
+            text = text.replace(word, shuffledWord);
         }
 
         System.out.println(text);
